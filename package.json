@@ -20,7 +20,10 @@
     ],
     "*.ts?(x)": [
       "prettier --parser=typescript --write"
-    ]
+    ],
+    "**/*.{js,jsx}": "eslint --fix",
+    "**/*.{ts,tsx}": "tslint --fix",
+    "**/*.less": "stylelint --syntax less"
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
