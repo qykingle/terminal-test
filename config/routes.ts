@@ -5,10 +5,12 @@
  */
 export default [
   {
-    exact: false, path: '/', component: '@/layouts/index',
+    exact: false,
+    path: '/',
+    component: '@/layouts/index',
     routes: [
-      { exact: true, path: '/', component: '@/pages/index' },
-      { component: '@/pages/404' },
+      { exact: true, path: '/', component: '@/pages/Home', title: '主页' },
+      { component: '@/pages/404', title: '404' },
     ],
   },
 ];
