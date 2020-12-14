@@ -4,7 +4,7 @@ import styles from './index.less';
 import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 
 const Home: FC = props => {
-  console.log(props);
+  console.log(props;
   debugger
   return (
     <div>
