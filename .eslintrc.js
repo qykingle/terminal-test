@@ -54,6 +54,7 @@ module.exports = {
     'linebreak-style': 0,
     'no-return-assign': 1,
     'react/sort-comp': 0,
+    'no-debugger': 1,
   },
   settings: {
     polyfills: ['fetch', 'promises', 'url'],
