@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
 import { notification } from 'antd';
 import { Validator } from 'jsonschema';
 import { JSONSchema4 } from 'json-schema';
@@ -36,11 +37,7 @@ export interface BCTAPIData {
   };
 }
 
-export interface ResultData<
-  R extends BCTAPIData = BCTAPIData,
-  K extends keyof R = 'result',
-  D extends R[K] = R[K]
-  > {
+export interface ResultData<R extends BCTAPIData = BCTAPIData, K extends keyof R = 'result', D extends R[K] = R[K]> {
   error: boolean;
   success: boolean;
   data: R;
@@ -51,10 +48,10 @@ export type ResponseBCTData = RequestResponse<BCTAPIData>;
 
 export type ResponseData<D = ResultData<BCTAPIData>> = RequestResponse<D>;
 
-export type IODataSchemas = {
+export interface IODataSchemas {
   request: JSONSchema4;
   response: JSONSchema4;
-};
+}
 
 export type RequestOptionsInitWithSchemas = RequestOptionsInit & {
   schemas?: IODataSchemas;
@@ -67,14 +64,14 @@ export type ResponseErrorPartialResponse = Omit<ResponseError, 'response'> & {
 
 const handleDeleteNull = (data: any): any => {
   if (_.isArray(data)) {
-    return data.map(value => {
+    return data.map((value) => {
       return handleDeleteNull(value);
     });
   }
 
   if (_.isObject(data)) {
     const newData = _.omitBy(data, _.isNull);
-    return _.mapValues(newData, value => {
+    return _.mapValues(newData, (value) => {
       return handleDeleteNull(value);
     });
   }
@@ -93,7 +90,7 @@ const errorHandler = (error: ResponseErrorPartialResponse & { code?: number }): 
       return message;
     }
 
-    if (code != null && (bctCodeMessage as { [key: number]: string })[code]) {
+    if (code !== null && code !== undefined && (bctCodeMessage as { [key: number]: string })[code]) {
       return (bctCodeMessage as { [key: number]: string })[code];
     }
 
@@ -105,7 +102,7 @@ const errorHandler = (error: ResponseErrorPartialResponse & { code?: number }): 
   };
 
   const getErrorCode = () => {
-    if (code != null) {
+    if (code !== null) {
       return code;
     }
     return response.status;
@@ -181,7 +178,7 @@ request.use(
     //   }
     // }
   },
-  { global: true }
+  { global: true },
 );
 
 request.use(
@@ -202,15 +199,7 @@ request.use(
     // 业务错误处理
     if (data.error) {
       const { code, message } = data.error;
-      throw {
-        name: '',
-        type: '',
-        data: undefined,
-        request: req,
-        response,
-        message,
-        code,
-      } as ResponseError;
+      throw Error(message);
     }
     // restful api style
     if (!data.hasOwnProperty('jsonrpc')) {
@@ -236,7 +225,7 @@ request.use(
       } as ResponseData;
     }
   },
-  { global: true }
+  { global: true },
 );
 
 // 在请求或响应被 then 或 catch 处理前拦截它们
@@ -264,10 +253,10 @@ request.interceptors.request.use(
       },
     };
   },
-  { core: true }
+  { core: true },
 );
 request.interceptors.response.use(
-  async response => {
+  async (response) => {
     // 状态码 401 Unauthorized 代表客户端错误，指的是由于缺乏目标资源要求的身份验证凭证，发送的请求未得到满足。
     if (response.status === 401) {
       // @todo 常量应该由 login page 模块提供
@@ -279,14 +268,14 @@ request.interceptors.response.use(
 
     return response;
   },
-  { core: true }
+  { core: true },
 );
 
 const requestPro = async <RD extends ResultData<BCTAPIData> = ResultData<BCTAPIData>>(
   url: string,
-  options: RequestOptionsInitWithSchemas
+  options: RequestOptionsInitWithSchemas,
 ): Promise<ResponseData> => {
-  if (options.data && options.data.params && options.schemas?.request) {
+  if (options?.data.params && options.schemas?.request) {
     const validator = new Validator();
 
     const result = validator.validate(options.data, options.schemas.request);
@@ -296,10 +285,10 @@ const requestPro = async <RD extends ResultData<BCTAPIData> = ResultData<BCTAPID
         `url: ${url} method: ${options.data.method} params validate Error:`,
         errors,
         options.schemas.request,
-        options.data.params
+        options.data.params,
       );
 
-      const message = errors.map(item => item.message).join(', ');
+      const message = errors.map((item) => item.message).join(', ');
       const error = {
         name: '',
         type: '参数错误',

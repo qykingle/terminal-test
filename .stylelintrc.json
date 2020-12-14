@@ -5,6 +5,7 @@
     "no-descending-specificity": null,
     "selector-pseudo-class-no-unknown": null,
     "selector-pseudo-element-colon-notation": null,
-    "font-family-no-missing-generic-family-keyword": null
+    "font-family-no-missing-generic-family-keyword": null,
+    "comment-empty-line-before": null
   }
 }

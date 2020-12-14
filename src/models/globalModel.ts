@@ -8,7 +8,7 @@ interface IPayload {
   [name: string]: any;
 }
 
-export default {
+const global: Model = {
   namespace: 'global',
   state: {},
   effects: {},
@@ -20,4 +20,5 @@ export default {
       };
     },
   },
-} as Model;
+};
+export default global;

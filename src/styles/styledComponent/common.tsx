@@ -2,7 +2,7 @@ import styled, { createGlobalStyle, keyframes, css } from 'styled-components';
 import { Style } from '@/constants/style';
 import Color from '@/styles/color';
 import { Tooltip } from 'antd';
-import React from 'react';
+import React, { ReactHTMLElement } from 'react';
 
 import { ARROW_RIGHT } from '@/utils/resourcePath';
 
@@ -36,7 +36,7 @@ export const ColumnValueStyle = styled(CommonColumnStyle)`
 `;
 
 export const FloatDiv = styled.div`
-  float: ${props => props.float};
+  float: ${(props) => props.float};
 `;
 
 // 横向排列，内容居中
@@ -44,15 +44,15 @@ export const FlexRowStartCenter = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 export const FlexRowCenterCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 
 // 横向排列
@@ -60,8 +60,8 @@ export const FlexRowStartStart = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: start;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 
 // 横向排列
@@ -69,9 +69,9 @@ export const FlexRowEndStart = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: start;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
-  ${props =>
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
+  ${(props) =>
     props.style &&
     css`
       ${props.style}
@@ -83,8 +83,8 @@ export const FlexRowBetweenCenter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
   /* width: 60%; */
 `;
 
@@ -92,8 +92,8 @@ export const FlexRowBetweenStart = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: start;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
   /* width: 60%; */
 `;
 
@@ -101,8 +101,8 @@ export const FlexRowAroundCenter = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
   /* width: 60%; */
 `;
 
@@ -112,8 +112,8 @@ export const FlexVerticalStartCenter = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 // 纵向排列，内容end
 export const FlexVerticalStartEnd = styled.div`
@@ -121,8 +121,8 @@ export const FlexVerticalStartEnd = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 // 纵向排列，内容靠前
 export const FlexVertical = styled.div`
@@ -130,8 +130,8 @@ export const FlexVertical = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 
 // 纵向排列，内容靠前
@@ -140,8 +140,8 @@ export const FlexVerticalCenter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 
 // 纵向排列，内容靠前
@@ -150,8 +150,8 @@ export const FlexVerticalCenterStart = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  width: ${props => props.width};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  width: ${(props) => props.width};
+  flex-wrap: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
 `;
 
 export const PanelBgDiv = styled.div`
@@ -259,7 +259,7 @@ export const GlobalPopupStyle = createGlobalStyle`
 export const GlobalRadioStyle = createGlobalStyle`
   .radio{
     .ant-radio-group, .ant-radio-wrapper {
-      color: ${props => props.labelColor} !important;
+      color: ${(props) => props.labelColor} !important;
     }
     .ant-radio-inner {
       background-color: ${Color.bgTabHeader};
@@ -430,7 +430,7 @@ export const GlobalTabsActionIconStyle = createGlobalStyle`
 // 水波纹效果
 const sploosh = keyframes`
   0% {
-    box-shadow: 0 0 0 0px rgba(255, 114, 37, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 114, 37, 0.7);
     background: rgba(255, 114, 37, 0.7);
   }
   100% {
@@ -438,36 +438,7 @@ const sploosh = keyframes`
     background: rgba(255, 114, 37, 0);
   }
 `;
-// 自定义点击波浪样式
-export const GlobalClickEffectStyle = createGlobalStyle`
-  .icon-tuya_huabanfuben {
-    font-size: 32px;
-    color: ${Color.colorValue};
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    margin-left: -16px;
-    /* transform: translate(-50%, -50%); */
-    margin-top: -60px;
-    z-index: 99999999999;
-    cursor: default;
-    /* right: -30px; */
-    /* z-index: 999; */
-  }
-  .ty-dot {
-    position: relative;
-    height: 2px;
-    width: 2px;
-    border-radius: 100%;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-    animation: ${sploosh} 3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    background: transparent;
-  }
-`;
+
 // 省略号，需要传参width
 export const EllipsisDiv = styled.div`
   display: inline-block;
@@ -478,28 +449,29 @@ export const EllipsisDiv = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  ${props =>
+  ${(props) =>
     props.justifyContent &&
     css`
-      text-align: ${props =>
+      text-align: ${(props) =>
         props.justifyContent === 'flex-start'
           ? 'left'
-          : props =>
-              props.justifyContent === 'flex-end'
-                ? 'right'
-                : props.align
-                ? props.align
-                : 'center'};
+          : (props) => (props.justifyContent === 'flex-end' ? 'right' : props.align ? props.align : 'center')};
     `}
-  ${props =>
+  ${(props) =>
     props.width &&
     css`
-      max-width: ${props => props.width}px;
+      max-width: ${(props) => props.width}px;
     `}
 `;
 
 // 省略号组件
-export function generateEllipsisDiv(title, width, value, align = '') {
+export function generateEllipsisDiv(props: {
+  title: string | React.ReactElement;
+  width: number;
+  value: any;
+  align: string;
+}) {
+  const { title, width, value, align } = props;
   return (
     <Tooltip title={title}>
       <EllipsisDiv align={align} width={width}>
@@ -512,7 +484,7 @@ export function generateEllipsisDiv(title, width, value, align = '') {
 // 禁用导航栏
 export const BanMenu = styled.div`
   width: 100%;
-  height: ${props => (props.one ? 60 : 106)}px;
+  height: ${(props) => (props.one ? 60 : 106)}px;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -522,21 +494,11 @@ export const BanMenu = styled.div`
   text-align: center;
   z-index: 99;
   padding-top: 10px;
-  /* const navigationTip = document.createElement('div'); */
-  /* navigationTip.style.cssText = */
-  /* "width: 100%; height: 60px;background-color: rgba(0,0,0,.5); position:fixed; top: 0;left: 0;font-size: 24px; color: #fff;text-align: center;z-index: 999999; padding-top: 10px;"; */
-  /* navigationTip.innerText = '新手引导时，暂不支持导航切换' */
-  /* document.body.appendChild(navigationTip); */
 `;
-// // 自定义图表样式
-// export const GlobalCanvasStyle = createGlobalStyle`
-//  canvas {
-//   width: 100% !important;
-//  }
-// `;
+
 // 自定义右上角提示tip
 export const TipImg = styled.img.attrs({
-  src: `${props => props.src}`,
+  src: `${(props) => props.src}`,
 })`
   width: 12px;
   height: 12px;
@@ -551,7 +513,6 @@ export const GlobalToolTipStyle = createGlobalStyle`
   .tool-tip {
     .ant-tooltip-inner {
       background-color: #ffffffe6;
-      /* opacity: .8; */
       color: #000;
     }
     .ant-tooltip-arrow {
@@ -587,10 +548,10 @@ export const TTableStyle = {
 // 竖线
 export const Divider = styled.span`
   display: inline-block;
-  height: ${props => props.height || 10}px;
+  height: ${(props) => props.height || 10}px;
   width: 1px;
   background-color: ${Color.colorCalendarBorder};
-  margin: 0 ${props => props.margin || 5}px;
+  margin: 0 ${(props) => props.margin || 5}px;
 `;
 
 export const HighDiv = styled.div`

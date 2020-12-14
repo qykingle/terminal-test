@@ -6,13 +6,13 @@
 import request from '@/utils/request';
 import { createFetch } from '@/__apis__/request';
 import _ from 'lodash';
-import * as commonLib from '@ty-devops-tools/api-generator/runtime/commonLib'
+import * as commonLib from '@ty-devops-tools/api-generator/runtime/commonLib';
 // import { getToken } from '@/lib/utils/authority';
 
 // 获得正确的URL
 const getUrl = (options: commonLib.IUserFetchParams) => {
   const { url, extra } = options;
-  if (extra && extra.mock) {
+  if (extra?.mock) {
     return url;
   }
   let baseUrl = url.split('=')[0];
@@ -21,7 +21,7 @@ const getUrl = (options: commonLib.IUserFetchParams) => {
 };
 
 // 统一获取接口数据
-export const fetchData = createFetch(async options => {
+export const fetchData = createFetch(async (options) => {
   const { method, params, schemas, extra } = options;
   const body = {
     method: options.url.split('=')[1],
@@ -33,7 +33,7 @@ export const fetchData = createFetch(async options => {
     method,
     data: body,
     schemas,
-    prefix: extra && extra.mock ? '' : extra?.prefix || '/api',
+    prefix: extra?.mock ? '' : extra?.prefix || '/api',
     // onCancelInterceptorsRequest,
   });
 });

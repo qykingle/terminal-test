@@ -3,9 +3,8 @@ import React, { FC } from 'react';
 import styles from './index.less';
 import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 
-const Home: FC = props => {
-  console.log(props;,
-  debugger
+const Home: FC = (props) => {
+  console.log('hello');
   return (
     <div>
       <StarOutlined />
